@@ -5,7 +5,7 @@
     <parent>
         <artifactId>lamp-example</artifactId>
         <groupId>com.tangyh.lamp</groupId>
-        <version>3.0.1-SNAPSHOT</version>
+        <version>3.2.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -36,7 +36,7 @@
         </dependency>
         <dependency>
             <groupId>com.tangyh.basic</groupId>
-            <artifactId>lamp-injection-starter</artifactId>
+            <artifactId>lamp-echo-starter</artifactId>
         </dependency>
         <dependency>
             <groupId>com.tangyh.basic</groupId>

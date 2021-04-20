@@ -5,7 +5,7 @@
     <parent>
         <artifactId>lamp-file</artifactId>
         <groupId>com.tangyh.lamp</groupId>
-        <version>3.0.1-SNAPSHOT</version>
+        <version>3.2.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -54,6 +54,10 @@
                     <artifactId>jersey-core</artifactId>
                     <groupId>com.sun.jersey</groupId>
                 </exclusion>
+                <exclusion>
+                    <artifactId>javax.activation-api</artifactId>
+                    <groupId>javax.activation</groupId>
+                </exclusion>
             </exclusions>
         </dependency>
         <!-- 七牛oss -->
@@ -66,7 +70,10 @@
             <groupId>com.github.tobato</groupId>
             <artifactId>fastdfs-client</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>io.minio</groupId>
+            <artifactId>minio</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>

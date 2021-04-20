@@ -47,7 +47,6 @@ import java.util.List;
 import java.util.Map;
 
 import static com.tangyh.basic.exception.code.ExceptionCode.BASE_VALID_PARAM;
-import static com.tangyh.lamp.common.constant.SwaggerConstants.DATA_TYPE_ARRAY;
 import static com.tangyh.lamp.common.constant.SwaggerConstants.DATA_TYPE_BOOLEAN;
 import static com.tangyh.lamp.common.constant.SwaggerConstants.DATA_TYPE_LONG;
 import static com.tangyh.lamp.common.constant.SwaggerConstants.DATA_TYPE_MULTIPART_FILE;
@@ -135,6 +134,10 @@ public class AttachmentController extends SuperSimpleController<AttachmentServic
     )
     @GetMapping
     @SysLog("根据业务类型查询附件")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "bizIds", value = "业务id", dataType = DATA_TYPE_STRING, allowMultiple = true, paramType = PARAM_TYPE_QUERY),
+            @ApiImplicitParam(name = "bizTypes", value = "业务类型", dataType = DATA_TYPE_STRING, allowMultiple = true, paramType = PARAM_TYPE_QUERY),
+    })
     @PreAuth("hasAnyPermission('{}view')")
     public R<List<AttachmentResultDTO>> findAttachment(@RequestParam(value = "bizTypes", required = false) String[] bizTypes,
                                                        @RequestParam(value = "bizIds", required = false) String[] bizIds) {
@@ -190,8 +193,8 @@ public class AttachmentController extends SuperSimpleController<AttachmentServic
      * @date 2019-05-12 21:23
      */
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "bizIds[]", value = "业务id数组", dataType = DATA_TYPE_ARRAY, paramType = PARAM_TYPE_QUERY),
-            @ApiImplicitParam(name = "bizTypes[]", value = "业务类型数组", dataType = DATA_TYPE_ARRAY, paramType = PARAM_TYPE_QUERY),
+            @ApiImplicitParam(name = "bizIds[]", value = "业务id数组", dataType = DATA_TYPE_STRING, allowMultiple = true, paramType = PARAM_TYPE_QUERY),
+            @ApiImplicitParam(name = "bizTypes[]", value = "业务类型数组", dataType = DATA_TYPE_STRING, allowMultiple = true, paramType = PARAM_TYPE_QUERY),
     })
     @ApiOperation(value = "根据业务类型/业务id打包下载", notes = "根据业务id下载一个文件或多个文件打包下载")
     @GetMapping(value = "/download/biz", produces = "application/octet-stream")
@@ -228,4 +231,33 @@ public class AttachmentController extends SuperSimpleController<AttachmentServic
         baseService.downloadByUrl(request, response, url, filename);
     }
 
+
+    /**
+     * 根据文件相对路径，获取访问路径
+     *
+     * @param paths  文件路径
+     * @param expiry 有效期
+     */
+    @ApiOperation(value = "批量根据文件相对路径，获取访问路径", notes = "批量根据文件相对路径，获取访问路径")
+    @GetMapping(value = "/getUrls")
+    public R<List<String>> getUrls(@ApiParam(name = "paths", value = "文件路径") @RequestParam(value = "paths") List<String> paths,
+                                   @ApiParam(name = "expiry", value = "过期时间")
+                                   @RequestParam(value = "expiry", defaultValue = "172800") Integer expiry) {
+        return R.success(baseService.getUrls(paths, expiry));
+    }
+
+    /**
+     * 根据文件相对路径，获取访问路径
+     *
+     * @param path   文件路径
+     * @param expiry 有效期
+     */
+    @ApiOperation(value = "根据文件相对路径，获取访问路径", notes = "根据文件相对路径，获取访问路径")
+    @GetMapping(value = "/getUrl")
+    public R<String> getUrl(@ApiParam(name = "path", value = "文件路径")
+                            @RequestParam(value = "path") String path,
+                            @ApiParam(name = "expiry", value = "过期时间")
+                            @RequestParam(value = "expiry", defaultValue = "172800") Integer expiry) {
+        return R.success(baseService.getUrl(path, expiry));
+    }
 }

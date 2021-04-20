@@ -5,7 +5,7 @@
     <parent>
         <artifactId>lamp-example</artifactId>
         <groupId>com.tangyh.lamp</groupId>
-        <version>3.0.1-SNAPSHOT</version>
+        <version>3.2.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -20,7 +20,6 @@
             <artifactId>seata-spring-boot-starter</artifactId>
         </dependency>
 
-
         <dependency>
             <groupId>com.tangyh.lamp</groupId>
             <artifactId>lamp-example-controller</artifactId>
@@ -29,55 +28,7 @@
 
         <dependency>
             <groupId>com.tangyh.basic</groupId>
-            <artifactId>lamp-swagger2-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.tangyh.basic</groupId>
-            <artifactId>lamp-validator-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.tangyh.basic</groupId>
-            <artifactId>lamp-xss-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.tangyh.basic</groupId>
-            <artifactId>lamp-cloud-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.tangyh.basic</groupId>
-            <artifactId>lamp-zipkin-client-starter</artifactId>
-        </dependency>
-
-        <!-- spring boot -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.apache.tomcat.embed</groupId>
-                    <artifactId>tomcat-embed-websocket</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-tomcat</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-undertow</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-aop</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <artifactId>lamp-all</artifactId>
         </dependency>
 
         <dependency>
@@ -85,13 +36,6 @@
             <artifactId>easypoi-spring-boot-starter</artifactId>
         </dependency>
 
-
-        <!-- 测试 -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
 
     <build>
